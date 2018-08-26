@@ -48,14 +48,14 @@ class NeuralNetwork(object):
         # Set up our weight matrices
         # What should the size of our first weight matrix be? Its transforming
         # between input dimension to hidden size 1
-        # (? x ?)
+        # Input is (batch_size x input_size); Transforming to (batch_size x hidden_size_1) so (input_size x hidden_size_1)
 
 
         # What about between the weight matrix between hidden size 1 and 2
-        # (? x ?)
+        # From (batch_size x hidden_size_1) to (batch_size x hidden_size_2) so (hidden_size_1 x hidden_size_2)
 
         # What about between hidden size 2 and output
-        # (? x ?)
+        # From (batch_size x hidden_size_2) to (batch_size x output_size) so (hidden_size_2 x output_size)
 
     def log_loss(self, y_hat, y, reg):
         """
@@ -79,5 +79,5 @@ class NeuralNetwork(object):
 
         Returns:
             Regularized square loss
-            square_loss =  1/(2*|y|) * sum((y_hat - y)^2) + reg * sum(w)^2          
+                      
         """
