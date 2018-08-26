@@ -66,7 +66,7 @@ class NeuralNetwork(object):
             reg: Strength of l2 regularization penalty
         Returns:
             Regularized log loss
-            log_loss = 
+            log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i))
         """
 
     def square_loss(selfs, y, y_hat, reg):
