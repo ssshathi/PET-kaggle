@@ -70,9 +70,8 @@ class NeuralNetwork(object):
         """
         y = np.ndarray.flatten(y)
         y_hat = np.ndarray.flatten(y_hat)
-        entropy = -1*np.sum(y * np.log2(y_hat))
-        return 1/self.batch_size * entropy + reg * np.sum(y**2)
-
+        return -1/self.batch_size * np.sum(y*np.log2(y_hat) + (1-y)*np.log2(1-y_hat))
+        # return 1/self.batch_size * np.sum(-1/np.abs(y) * np.sum(y*np.log2(y_hat))) # alternatively
 
     def square_loss(self, y, y_hat, reg):
         """
@@ -80,7 +79,7 @@ class NeuralNetwork(object):
         Args:
             y: Truth
             y_hat: Predictions
-            reg: Strength of l2 regularization penalty
+            reg: Strcd Documbength of l2 regularization penalty
 
         Returns:
             Regularized square loss (is this the same as MSE)
