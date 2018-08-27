@@ -82,6 +82,9 @@ class NeuralNetwork(object):
             reg: Strcd Documbength of l2 regularization penalty
 
         Returns:
-            Regularized square loss (is this the same as MSE)
+            Regularized square loss
                       
         """
+        y = np.ndarray.flatten(y)
+        y_hat = np.ndarray.flatten(y_hat)
+        return 1/self.batch_size * np.sum((y-y_hat)**2)
