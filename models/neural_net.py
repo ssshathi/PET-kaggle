@@ -68,10 +68,9 @@ class NeuralNetwork(object):
             Regularized log loss
             log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i))
         """
-        y = np.ndarray.flatten(y)
-        y_hat = np.ndarray.flatten(y_hat)
-        return -1/self.batch_size * np.sum(y*np.log2(y_hat) + (1-y)*np.log2(1-y_hat))
-        # return 1/self.batch_size * np.sum(-1/np.abs(y) * np.sum(y*np.log2(y_hat))) # alternatively
+        y = np.reshape(y, (self.batch_size*self.output_size,-1))
+        y_hat = np.reshape(y_hat, (self.batch_size*self.output_size,-1))
+        return -1/(self.batch_size*self.output_size)*np.sum(y*np.log2(y_hat))
 
     def square_loss(self, y, y_hat, reg):
         """
@@ -79,12 +78,12 @@ class NeuralNetwork(object):
         Args:
             y: Truth
             y_hat: Predictions
-            reg: Strcd Documbength of l2 regularization penalty
+            reg: Strength of l2 regularization penalty
 
         Returns:
             Regularized square loss
                       
         """
-        y = np.ndarray.flatten(y)
-        y_hat = np.ndarray.flatten(y_hat)
-        return 1/self.batch_size * np.sum((y-y_hat)**2)
+        y = np.reshape(y, (self.batch_size * self.output_size, -1))
+        y_hat = np.reshape(y_hat, (self.batch_size * self.output_size, -1))
+        return 1/(self.batch_size*self.output_size) * np.sum((y-y_hat)**2)
