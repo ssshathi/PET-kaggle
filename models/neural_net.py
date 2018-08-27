@@ -68,16 +68,23 @@ class NeuralNetwork(object):
             Regularized log loss
             log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i)) 
         """
+        y = np.ndarray.flatten(y)
+        y_hat = np.ndarray.flatten(y_hat)
+        return -1/self.batch_size * np.sum(y*np.log2(y_hat) + (1-y)*np.log2(1-y_hat))
+        # return 1/self.batch_size * np.sum(-1/np.abs(y) * np.sum(y*np.log2(y_hat))) # alternatively
 
-    def square_loss(selfs, y, y_hat, reg):
+    def square_loss(self, y, y_hat, reg):
         """
         Calculate the l2 regularized square loss between y (truth) and y_hat (predictions)
         Args:
             y: Truth
             y_hat: Predictions
-            reg: Strength of l2 regularization penalty
+            reg: Strcd Documbength of l2 regularization penalty
 
         Returns:
             Regularized square loss
                       
         """
+        y = np.ndarray.flatten(y)
+        y_hat = np.ndarray.flatten(y_hat)
+        return 1/self.batch_size * np.sum((y-y_hat)**2)
