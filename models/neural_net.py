@@ -61,12 +61,12 @@ class NeuralNetwork(object):
         """
         Calculate the l2 regularized log loss between y (truth) and y_hat (predictions)
         Args:
-            y_hat: Predictions
-            y: Truth
+            y_hat np.array(batch x output_size): Predictions 
+            y np.array(batch x output_size): 
             reg: Strength of l2 regularization penalty
         Returns:
             Regularized log loss
-            log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i))
+            log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i)) 
         """
 
     def square_loss(selfs, y, y_hat, reg):
