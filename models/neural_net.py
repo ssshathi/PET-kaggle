@@ -68,8 +68,13 @@ class NeuralNetwork(object):
             Regularized log loss
             log_loss = 1/batch * sum (-1/|y| * sum (y_i * log(y_hat_i))
         """
+        y = np.ndarray.flatten(y)
+        y_hat = np.ndarray.flatten(y_hat)
+        entropy = -1*np.sum(y * np.log2(y_hat))
+        return 1/self.batch_size * entropy + reg * np.sum(y**2)
 
-    def square_loss(selfs, y, y_hat, reg):
+
+    def square_loss(self, y, y_hat, reg):
         """
         Calculate the l2 regularized square loss between y (truth) and y_hat (predictions)
         Args:
@@ -78,6 +83,6 @@ class NeuralNetwork(object):
             reg: Strength of l2 regularization penalty
 
         Returns:
-            Regularized square loss
+            Regularized square loss (is this the same as MSE)
                       
         """
