@@ -70,7 +70,7 @@ class NeuralNetwork(object):
         """
         y = np.ndarray.flatten(y)
         y_hat = np.ndarray.flatten(y_hat)
-        return -1/self.batch_size * np.sum(y*np.log2(y_hat) + (1-y)*np.log2(1-y_hat))
+        return -1 / self.batch_size * np.sum(y * np.log2(y_hat) + (1 - y) * np.log2(1 - y_hat))
         # return 1/self.batch_size * np.sum(-1/np.abs(y) * np.sum(y*np.log2(y_hat))) # alternatively
 
     def square_loss(self, y, y_hat, reg):
@@ -87,4 +87,30 @@ class NeuralNetwork(object):
         """
         y = np.ndarray.flatten(y)
         y_hat = np.ndarray.flatten(y_hat)
-        return 1/self.batch_size * np.sum((y-y_hat)**2)
+        return 1 / self.batch_size * np.sum((y - y_hat) ** 2)
+
+    def get_log_loss_gradients(self, loss):
+        """
+        Get gradients for each weight given the log loss
+        of a training batch
+        Args:
+            loss (float): Regularized log loss of a training batch 
+
+        Returns:
+            gradients (np.array of floats, same dimensions as self.weights:
+            [[input_size x hidden_size_1], [hidden_size_1 x hidden_size_2], [hidden_size_2 x output_size]]
+        """
+        pass
+
+    def get_square_loss_gradients(self, loss):
+        """
+        Get gradients for each weight given the square loss
+        of a training batch
+        Args:
+            loss (float): Regularized square loss of a training batch 
+
+        Returns:
+            gradients (np.array of floats, same dimensions as self.weights:
+            [[input_size x hidden_size_1], [hidden_size_1 x hidden_size_2], [hidden_size_2 x output_size]]
+        """
+        pass
